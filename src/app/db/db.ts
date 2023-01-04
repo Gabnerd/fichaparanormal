@@ -3,7 +3,8 @@ import Dexie, { Table } from 'dexie';
 export enum treinamento{
   leigo = 0,
   treinado = 1,
-  experto = 2
+  veterano = 2,
+  experto = 3
 }
 
 export enum origemHabilidade{
