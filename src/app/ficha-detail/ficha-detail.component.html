@@ -1,1 +1,10 @@
-<p>ADASD</p>
+<p>{{ficha.nome}}</p>
+classe: <input type="text" [(ngModel)]="classe" (blur)="saveFicha()"><br>
+agilidade: <input type="number" [(ngModel)]="agilidade" (blur)="saveFicha()"><br>
+forca: <input type="number" [(ngModel)]="forca" (blur)="saveFicha()"><br>
+presenca: <input type="number" [(ngModel)]="presenca" (blur)="saveFicha()"><br>
+vigor: <input type="number" [(ngModel)]="vigor" (blur)="saveFicha()"><br>
+intelecto: <input type="number" [(ngModel)]="intelecto" (blur)="saveFicha()"><br>
+
+pv: <input type="number" [(ngModel)]="pvAtual" (blur)="saveFicha()">/<input type="number" [(ngModel)]="pv" (blur)="saveFicha()"><br>
+pe: <input type="number" [(ngModel)]="peAtual" (blur)="saveFicha()">/<input type="number" [(ngModel)]="pe" (blur)="saveFicha()">

@@ -12,7 +12,9 @@ export interface Ficha {
   classe?: string;
   nex?: number;
   pv?: number;
+  pvAtual?: number;
   pe?: number;
+  peAtual?: number;
   defesa?: number;
   sanidade?: number;
   tAcrobacia?: number;
