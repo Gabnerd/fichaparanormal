@@ -148,7 +148,8 @@ Vontade: <select [(ngModel)]="tVontade" (change)="saveFicha()">
     <option value="2">Experto</option>
 </select>
 <br><br>
-<div *ngFor="let habilidade of habilidadesObserv | async" class="habilidadePanel">
+<h2>Habilidades</h2>
+<div *ngFor="let habilidade of habilidadesObserv | async" class="panel">
     <p>{{habilidade.titulo}}
     <select [value]="habilidade.origem" disabled>
         <option value="0">Classe</option>
@@ -165,4 +166,18 @@ Vontade: <select [(ngModel)]="tVontade" (change)="saveFicha()">
     <option value="2">Outros</option>
 </select><br>
 <textarea [(ngModel)]="descricaoHabilidade"></textarea><br>
-<button (click)="saveHabilidade()">add habilidade</button>
+<button (click)="saveHabilidade()">add habilidade</button><br><br>
+<h2>Armas</h2>
+<div *ngFor="let arma of armasObserv | async" class="panel">
+    <p>{{arma.nome}}</p>
+    <p>{{arma.dano}}</p>
+    <p>{{arma.critico}}</p>
+    <p>{{arma.multiplicadorCritico}}</p>
+    <p>{{arma.modificador}}</p>
+    <button (click)="deleteArma(arma.id)">Delete</button>
+</div>
+<input type="text" [(ngModel)]="nomeArma">
+<input type="text" [(ngModel)]="danoArma">
+<input type="number" [(ngModel)]="criticoArma">
+<input type="number" [(ngModel)]="multiplicadorCriticoArma">
+<input type="text" [(ngModel)]="modificadorArma">

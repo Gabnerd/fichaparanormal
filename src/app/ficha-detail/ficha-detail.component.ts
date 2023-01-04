@@ -17,6 +17,12 @@ export class FichaDetailComponent {
   origemSHabilidade: origemHabilidade = origemHabilidade.classe;
   descricaoHabilidade: string = "";
 
+  nomeArma: string = "";
+  danoArma: string = "";
+  criticoArma: number = 0;
+  multiplicadorCriticoArma: number = 0;
+  modificadorArma: string = "";
+
   ficha: Ficha = { nome: "" };
   habilidades: Habilidade[] = [];
 
@@ -115,6 +121,7 @@ export class FichaDetailComponent {
   });
 
   habilidadesObserv = liveQuery(()=>this.loadHabilidades())
+  armasObserv = liveQuery(()=>this.loadArmas())
 
   async loadFicha() {
     return db.fichas.get(Number.parseInt((this.route.snapshot.paramMap.get("id") || "").toString()));
@@ -122,6 +129,10 @@ export class FichaDetailComponent {
 
   async loadHabilidades(){
     return db.habilidades.where({idFicha: Number.parseInt((this.route.snapshot.paramMap.get("id") || "").toString())}).toArray();
+  }
+
+  async loadArmas(){
+    return db.armas.where({idFicha: Number.parseInt((this.route.snapshot.paramMap.get("id") || "").toString())}).toArray();
   }
 
   async saveFicha() {
@@ -183,7 +194,27 @@ export class FichaDetailComponent {
     this.descricaoHabilidade = "";
   }
 
+  async saveArma(){
+    await db.armas.add({
+      idFicha: Number.parseInt((this.route.snapshot.paramMap.get("id") || "").toString()),
+      nome: this.nomeArma,
+      dano: this.danoArma,
+      critico: this.criticoArma,
+      modificador: this.modificadorArma,
+      multiplicadorCritico: this.multiplicadorCriticoArma
+    });
+    this.nomeArma = "";
+    this.danoArma = "";
+    this.criticoArma = 0;
+    this.modificadorArma = "";
+    this.multiplicadorCriticoArma = 0;
+  }
+
   async deleteHabilidade(id: number | undefined){
     await db.habilidades.delete(Number.parseInt((id || "").toString()));
+  }
+
+  async deleteArma(id: number | undefined){
+    await db.armas.delete(Number.parseInt((id || "").toString()));
   }
 }

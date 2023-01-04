@@ -9,7 +9,8 @@ export enum treinamento{
 export enum origemHabilidade{
   classe = 0,
   origem = 1,
-  outros = 2
+  outros = 2,
+  caminho = 3
 }
 
 export interface Ficha {
@@ -68,15 +69,27 @@ export interface Habilidade{
   descricao: string;
 }
 
+export interface Arma{
+  id?: number;
+  idFicha: number;
+  nome: string;
+  dano: string;
+  critico: number;
+  multiplicadorCritico: number;
+  modificador: string;
+}
+
 export class AppDB extends Dexie {
   fichas!: Table<Ficha, number>;
   habilidades!: Table<Habilidade, number>;
+  armas!: Table<Arma, number>;
 
   constructor() {
     super('fichaparanormal');
     this.version(3).stores({
       fichas: "++id",
-      habilidades: "++id, idFicha"
+      habilidades: "++id, idFicha",
+      armas: "++id, idFicha"
     });
     this.on('populate', () => this.populate());
   }
