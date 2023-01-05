@@ -7,9 +7,12 @@ presenca: <input type="number" [(ngModel)]="presenca" (blur)="saveFicha()"><br>
 vigor: <input type="number" [(ngModel)]="vigor" (blur)="saveFicha()"><br>
 intelecto: <input type="number" [(ngModel)]="intelecto" (blur)="saveFicha()"><br>
 <br>
-pv: <input type="number" [(ngModel)]="pvAtual" (blur)="saveFicha()">/<input type="number" [(ngModel)]="pv" (blur)="saveFicha()"><br>
-pe: <input type="number" [(ngModel)]="peAtual" (blur)="saveFicha()">/<input type="number" [(ngModel)]="pe" (blur)="saveFicha()"><br>
-sanidade: <input type="number" [(ngModel)]="sanidadeAtual" (blur)="saveFicha()">/<input type="number" [(ngModel)]="sanidade" (blur)="saveFicha()"><br>
+pv: <input type="number" [(ngModel)]="pvAtual" (blur)="saveFicha()">/<input type="number" [(ngModel)]="pv"
+    (blur)="saveFicha()"><br>
+pe: <input type="number" [(ngModel)]="peAtual" (blur)="saveFicha()">/<input type="number" [(ngModel)]="pe"
+    (blur)="saveFicha()"><br>
+sanidade: <input type="number" [(ngModel)]="sanidadeAtual" (blur)="saveFicha()">/<input type="number"
+    [(ngModel)]="sanidade" (blur)="saveFicha()"><br>
 defesa: <input type="text" [(ngModel)]="defesa" (blur)="saveFicha()"><br>
 <br>
 <h2>Treinamentos</h2>
@@ -26,7 +29,7 @@ Adestramento: <select [(ngModel)]="tAdestramento" (change)="saveFicha()">
     <option value="3">Experto(+15)</option>
 </select><br>
 Artes: <select [(ngModel)]="tArtes" (change)="saveFicha()">
-   <option value="0">Leigo(+0)</option>
+    <option value="0">Leigo(+0)</option>
     <option value="1">Treinado(+5)</option>
     <option value="2">Veterano(+10)</option>
     <option value="3">Experto(+15)</option>
@@ -179,24 +182,28 @@ Vontade: <select [(ngModel)]="tVontade" (change)="saveFicha()">
 <h2>Habilidades</h2>
 <div *ngFor="let habilidade of habilidadesObserv | async" class="panel">
     <p>{{habilidade.titulo}}
-    <select [value]="habilidade.origem" disabled>
+        <select [value]="habilidade.origem" disabled>
+            <option value="0">Classe</option>
+            <option value="1">Origem</option>
+            <option value="3">Caminho</option>
+            <option value="2">Outros</option>
+        </select>
+    </p>
+    <p>{{habilidade.descricao}}</p>
+    <button (click)="deleteHabilidade(habilidade.id)">Delete</button>
+</div>
+<div>
+    titulo habilidade: <input type="text" [(ngModel)]="tituloHabilidade"><br>
+    origem habilidade: <select [(ngModel)]="origemSHabilidade">
         <option value="0">Classe</option>
         <option value="1">Origem</option>
         <option value="3">Caminho</option>
         <option value="2">Outros</option>
-    </select></p>
-    <p>{{habilidade.descricao}}</p>
-    <button (click)="deleteHabilidade(habilidade.id)">Delete</button>
+    </select><br>
+    descrição habilidade: <textarea [(ngModel)]="descricaoHabilidade"></textarea><br>
+    <button (click)="saveHabilidade()">save habilidade</button>
 </div>
-<input type="text" [(ngModel)]="tituloHabilidade"><br>
-<select [(ngModel)]="origemSHabilidade">
-    <option value="0">Classe</option>
-    <option value="1">Origem</option>
-    <option value="3">Caminho</option>
-    <option value="2">Outros</option>
-</select><br>
-<textarea [(ngModel)]="descricaoHabilidade"></textarea><br>
-<button (click)="saveHabilidade()">add habilidade</button><br><br>
+<br><br>
 <h2>Armas</h2>
 <div *ngFor="let arma of armasObserv | async" class="panel">
     <p>{{arma.nome}}</p>
@@ -206,9 +213,11 @@ Vontade: <select [(ngModel)]="tVontade" (change)="saveFicha()">
     <p>{{arma.modificador}}</p>
     <button (click)="deleteArma(arma.id)">Delete</button>
 </div>
-<input type="text" [(ngModel)]="nomeArma"><br>
-<input type="text" [(ngModel)]="danoArma"><br>
-<input type="number" [(ngModel)]="criticoArma"><br>
-<input type="number" [(ngModel)]="multiplicadorCriticoArma"><br>
-<input type="text" [(ngModel)]="modificadorArma"><br>
-<button (click)="saveArma()">Save Arma</button>
+<div>
+    nome arma:<input type="text" [(ngModel)]="nomeArma"><br>
+    dano arma:<input type="text" [(ngModel)]="danoArma"><br>
+    critico arma:<input type="number" [(ngModel)]="criticoArma"><br>
+    multiplicador de critico arma:<input type="number" [(ngModel)]="multiplicadorCriticoArma"><br>
+    modificador arma:<input type="text" [(ngModel)]="modificadorArma"><br>
+    <button (click)="saveArma()">Save Arma</button>
+</div>
