@@ -27,6 +27,7 @@ export class FichaDetailComponent {
   habilidades: Habilidade[] = [];
 
   classe: string = "";
+  caminho: string = "";
   agilidade: number = 0;
   forca: number = 0;
   presenca: number = 0;
@@ -76,6 +77,7 @@ export class FichaDetailComponent {
   fichaObserv = liveQuery(() => this.loadFicha()).subscribe((ficha) => {
     this.ficha = (ficha || { nome: "" })
     this.classe = ficha?.classe || "";
+    this.caminho = ficha?.caminho || "";
     this.agilidade = ficha?.agilidade || 0;
     this.forca = ficha?.forca || 0;
     this.presenca = ficha?.presenca || 0;
@@ -139,6 +141,7 @@ export class FichaDetailComponent {
     db.fichas.update(Number.parseInt((this.route.snapshot.paramMap.get("id") || "").toString()),
       {
         classe: this.classe,
+        caminho: this.caminho,
         agilidade: this.agilidade,
         forca: this.forca,
         presenca: this.presenca,

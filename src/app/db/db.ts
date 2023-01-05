@@ -24,6 +24,7 @@ export interface Ficha {
   intelecto?: number;
   origem?: string;
   classe?: string;
+  caminho?: string;
   nex?: number;
   pv?: number;
   pvAtual?: number;
