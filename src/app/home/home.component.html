@@ -1,5 +1,5 @@
 <div >
-    <p *ngFor="let ficha of fichas | async"><a [routerLink]="'/ficha/'+ficha.id">{{ficha.nome}}</a></p>
+    <p *ngFor="let ficha of fichas | async"><a [routerLink]="'/ficha/'+ficha.id">{{ficha.nome}}</a> <button (click)="deleteFicha(ficha.id)">delete</button></p>
     <div *ngIf="addFichaMode">
         <input type="text" [(ngModel)]="nome">
         <button (click)="addNewList()">Save ficha</button>

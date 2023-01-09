@@ -21,5 +21,9 @@ export class HomeComponent {
     this.addFichaMode = false;
     this.nome = '';
   }
+
+  async deleteFicha(id: Number | undefined){
+    await db.fichas.delete(Number.parseInt((id || "").toString()));
+  }
   
 }
